@@ -1,23 +1,44 @@
 import React, { Component } from 'react';
 import './TaskBoard.css';
 
+const ENTER_KEY = 13;
+
 class TaskBoard extends Component {
   constructor (props) {
     super(props);
 
     this.state = {
       taskArr : [
-        "walk a dog",
-        "buy some vegies",
-        "clean the flat"
+        {taskName: "walk a dog", status: "unfinished"},
+        {taskName: "buy some vegies", status: "unfinished"},
+        {taskName: "clean the flat", status: "unfinished"}
       ]
     }
 
     this.handleSortList = this.handleSortList.bind(this);
+    this.handleAddNewTask = this.handleAddNewTask.bind(this);
+  }
+
+  handleAddNewTask (event) {
+
+    if (event.keyCode !== ENTER_KEY) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const task = {
+      taskName: event.target.value,
+      status: "unfinished"
+    };
+
+    this.setState(prevState => ({
+      taskArr: [...prevState.taskArr, task]
+    }));
   }
 
   handleSortList (val) {
-    console.log(val)
+    //console.log(val)
   }
 
   render() {
@@ -26,7 +47,11 @@ class TaskBoard extends Component {
     return (
       <section className="to-do-list_main-wrapper">
         <h3 className="to-do-list_header">What needs to be done:</h3>
-        <input type="text" className="to-do-list_input-field" placeholder="add your task"/>
+        <input
+          type="text"
+          className="to-do-list_input-field"
+          placeholder="add your task"
+          onKeyDown={this.handleAddNewTask}/>
         <section>
         {isItems
           ? <DisplayAllItems listItems={this.state.taskArr} />
@@ -56,7 +81,7 @@ function DisplayAllItems (props) {
     resultList.push(
       <li key={i.toString()}>
         <div className="container-list-single-item">
-          <input type="checkbox"/>{listArr[i]}
+          <input type="checkbox"/>{listArr[i].taskName}
         </div>
       </li>
     );
