@@ -17,10 +17,10 @@ class TaskBoard extends Component {
 
     this.handleSortList = this.handleSortList.bind(this);
     this.handleAddNewTask = this.handleAddNewTask.bind(this);
+    this.handleRemoveTask = this.handleRemoveTask.bind(this);
   }
 
   handleAddNewTask (event) {
-
     if (event.keyCode !== ENTER_KEY) {
       return;
     }
@@ -35,6 +35,12 @@ class TaskBoard extends Component {
     this.setState(prevState => ({
       taskArr: [...prevState.taskArr, task]
     }));
+
+    this.refs.inputFieldTag.value = '';
+  }
+
+  handleRemoveTask (event) {
+
   }
 
   handleSortList (val) {
@@ -50,6 +56,7 @@ class TaskBoard extends Component {
         <input
           type="text"
           className="to-do-list_input-field"
+          ref="inputFieldTag"
           placeholder="add your task"
           onKeyDown={this.handleAddNewTask}/>
         <section>
