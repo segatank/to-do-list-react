@@ -80,6 +80,10 @@ class TaskBoard extends Component {
   }
 }
 
+const removeTask = (index) => {
+  console.log(index)
+}
+
 function DisplayAllItems (props) {
   const listArr = props.listItems;
 
@@ -88,7 +92,9 @@ function DisplayAllItems (props) {
     resultList.push(
       <li key={i.toString()}>
         <div className="container-list-single-item">
-          <input type="checkbox"/>{listArr[i].taskName}
+          <input type="checkbox"/>
+          <label>{listArr[i].taskName}</label>
+          <button className="item-button_hidden" onClick={removeTask.bind(null, i)}>+</button>
         </div>
       </li>
     );
