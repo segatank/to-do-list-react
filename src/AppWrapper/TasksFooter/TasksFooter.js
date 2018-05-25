@@ -7,7 +7,7 @@ class TasksFooter extends Component {
       <div name="container-footer">
           <span>Tasks </span>
           <span>to do: </span>
-          <span>{3} </span>
+          <span>{this.props.totalTasks} </span>
           <input type="radio" name="sortTasks" id="all" />
             <label htmlFor="all">All</label>
           <input type="radio" name="sortTasks" id="unfinished"/>

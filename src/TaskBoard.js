@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './TaskBoard.css';
 
 const ENTER_KEY = 13;
-//old component which was decompoused into smaller pieces
+//OLD COMPONENT which was divided into smaller pieces
 class TaskBoard extends Component {
   constructor (props) {
     super(props);
