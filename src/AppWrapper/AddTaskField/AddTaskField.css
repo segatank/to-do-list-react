@@ -1,0 +1,11 @@
+.to-do-list_header {
+  font-size: 24px;
+  text-align: center;
+}
+
+.to-do-list_input-field {
+  margin: auto;
+  width: 560px;
+  height: 30px;
+  font-size: 22px;
+}

@@ -1,0 +1,9 @@
+.to-do-list_main-wrapper {
+  margin: auto;
+  border-radius: 4px;
+  border-color: green;
+  border-style: double;
+  border-width: 6px;
+  padding: 25px;
+  width: 600px;
+}
