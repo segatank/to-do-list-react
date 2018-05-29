@@ -11,7 +11,7 @@ class AddTaskField extends Component {
           className="to-do-list_input-field"
           ref="inputFieldTag"
           placeholder="add your task"
-          onKeyDown={(e) => console.log(e.target.value)}/>
+          onKeyDown={this.props.onClick.bind(null, this)}/>
       </div>
     );
   }

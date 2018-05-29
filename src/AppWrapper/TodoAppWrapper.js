@@ -17,12 +17,34 @@ class TodoAppWrapper extends Component {
         {taskName: "clean the flat", status: "unfinished"}
       ]
     }
+    this.handleAddTask = this.handleAddTask.bind(this)
+  }
+
+  handleAddTask (component, event) {
+      const ENTER_KEY = 13;
+
+      if (event.keyCode !== ENTER_KEY) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const task = {
+        taskName: event.target.value,
+        status: "unfinished"
+      };
+
+      this.setState(prevState => ({
+        listOfTasks: [...prevState.listOfTasks, task]
+      }));
+      console.log(this.state.listOfTasks)
+      //this.refs.inputFieldTag.value = '';
   }
 
   render() {
     return (
       <section className="to-do-list_main-wrapper">
-        <AddTaskField />
+        <AddTaskField onClick={this.handleAddTask}/>
         <TasksContainer tasksList={this.state.listOfTasks}/>
         <TasksFooter totalTasks={this.state.listOfTasks.length}/>
       </section>
