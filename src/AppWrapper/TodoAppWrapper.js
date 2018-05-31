@@ -37,16 +37,17 @@ class TodoAppWrapper extends Component {
       this.setState(prevState => ({
         listOfTasks: [...prevState.listOfTasks, task]
       }));
-      console.log(this.state.listOfTasks)
+
+      document.getElementById("newTaskInput").value = '';
       //this.refs.inputFieldTag.value = '';
   }
 
   render() {
     return (
       <section className="to-do-list_main-wrapper">
-        <AddTaskField onClick={this.handleAddTask}/>
-        <TasksContainer tasksList={this.state.listOfTasks}/>
-        <TasksFooter totalTasks={this.state.listOfTasks.length}/>
+        <AddTaskField onClick={this.handleAddTask} />
+        <TasksContainer tasksList={this.state.listOfTasks} />
+        <TasksFooter totalTasks={this.state.listOfTasks.length} />
       </section>
     );
   }

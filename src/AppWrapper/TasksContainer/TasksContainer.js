@@ -4,17 +4,10 @@ import './TasksContainer.css';
 
 
 class TasksContainer extends Component {
-  constructor (props) {
-    super(props);
-
-    this.state = {
-      listOfTasks : this.props.tasksList
-    }
-  }
 
   render() {
-    const listArr = this.state.listOfTasks;
-    const isItems = this.state.listOfTasks.length > 0;
+    const listArr = this.props.tasksList;
+    const isItems = this.props.tasksList.length > 0;
     const resultList = [];
     for (let i=0; i < listArr.length; i++) {
       resultList.push(
