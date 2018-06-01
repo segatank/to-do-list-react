@@ -39,7 +39,6 @@ class TodoAppWrapper extends Component {
       }));
 
       document.getElementById("newTaskInput").value = '';
-      //this.refs.inputFieldTag.value = '';
   }
 
   render() {
