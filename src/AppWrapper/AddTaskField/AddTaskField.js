@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './AddTaskField.css';
 
 function AddTaskField (props) {
@@ -10,7 +10,7 @@ function AddTaskField (props) {
         type="text"
         className="to-do-list_input-field"
         placeholder="add new task"
-        onKeyDown={props.onClick.bind(null, this)}/>
+        onKeyDown={props.onClick.bind(this)}/>
     </div>
   );
 }

@@ -68,7 +68,7 @@ class TaskBoard extends Component {
             <span>Tasks </span>
             <span>to do: </span>
             <span>{this.state.taskArr.length} </span>
-            <input type="radio" name="sortTasks" id="all" onChange={this.handleSortList("all")} />
+            <input type="radio" name="sortTasks" id="all" />
               <label htmlFor="all">All</label>
             <input type="radio" name="sortTasks" id="unfinished"/>
               <label htmlFor="unfinished">Unfinished</label>

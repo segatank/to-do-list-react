@@ -6,13 +6,15 @@ import './TasksContainer.css';
 class TasksContainer extends Component {
 
   render() {
-    const listArr = this.props.tasksList;
-    const isItems = this.props.tasksList.length > 0;
+    const arrAfterFiltering = this.props.tasksFiltered === "all"
+                                ? this.props.tasksList
+                                : this.props.tasksList.filter((element) => element.status === this.props.tasksFiltered)
+    const isItems = arrAfterFiltering.length > 0;
     const resultList = [];
-    for (let i=0; i < listArr.length; i++) {
+    for (let i=0; i < arrAfterFiltering.length; i++) {
       resultList.push(
         <li key={i.toString()}>
-          <SingleTask taskNumber={i} taskName={listArr[i].taskName}/>
+          <SingleTask taskNumber={i} taskName={arrAfterFiltering[i].taskName}/>
         </li>
       );
     }
