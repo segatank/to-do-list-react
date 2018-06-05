@@ -58,7 +58,7 @@ class TodoAppWrapper extends Component {
       <section className="to-do-list_main-wrapper">
         <AddTaskField onClick={this.handleAddTask} />
         <TasksContainer tasksList={this.state.listOfTasks} tasksFiltered={this.state.filter}/>
-        <TasksFooter totalTasks={this.state.listOfTasks.length} onClick={this.handleFilterTasks}/>
+        <TasksFooter totalTasks={this.state.listOfTasks.length} onClick={this.handleFilterTasks} filter={this.state.filter}/>
       </section>
     );
   }
