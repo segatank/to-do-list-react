@@ -6,15 +6,22 @@ import './TasksContainer.css';
 class TasksContainer extends Component {
 
   render() {
-    const arrAfterFiltering = this.props.tasksFiltered === "all"
-                                ? this.props.tasksList
-                                : this.props.tasksList.filter((element) => element.status === this.props.tasksFiltered)
+    const arrAfterFiltering = this.props.tasksInfo.filter === "all"
+                                ? this.props.tasksInfo.listOfTasks
+                                : this.props.tasksInfo.listOfTasks.filter(
+                                  element => element.status === this.props.tasksInfo.filter)
     const isItems = arrAfterFiltering.length > 0;
     const resultList = [];
     for (let i=0; i < arrAfterFiltering.length; i++) {
       resultList.push(
         <li key={i.toString()}>
-          <SingleTask taskNumber={i} taskName={arrAfterFiltering[i].taskName}/>
+          <input type="button" 
+            value={arrAfterFiltering[i].taskNumber}
+              onClick={this.props.onClick.bind(this)}/>
+          <SingleTask
+            taskNumber={arrAfterFiltering[i].taskNumber}
+            taskName={arrAfterFiltering[i].taskName}
+            onClick={this.props.onClick.bind(null, this.props.onClick)}/>
         </li>
       );
     }

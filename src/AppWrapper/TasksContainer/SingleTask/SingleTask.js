@@ -5,16 +5,14 @@ const removeTask = (index) => {
   console.log(index)
 }
 
-class SingleTask extends Component {
-  render() {
+function SingleTask (props) {
     return (
         <div className="container-list-single-item">
           <input type="checkbox"/>
-          <label>{this.props.taskName}</label>
-          <button className="item-button_hidden" onClick={removeTask.bind(null, this.props.taskName)}>+</button>
+          <label>{props.taskName}</label>
+          <button className="item-button_hidden" onClick={props.onClick.bind(this)}>+</button>
         </div>
     );
-  }
 }
 
 export default SingleTask;

@@ -12,15 +12,16 @@ class TodoAppWrapper extends Component {
 
     this.state = {
       listOfTasks : [
-        {taskName: "walk a dog", status: "unfinished"},
-        {taskName: "feed the cat", status: "finished"},
-        {taskName: "buy some vegies", status: "unfinished"},
-        {taskName: "clean the flat", status: "finished"},
-        {taskName: "wash the window", status: "finished"},
+        {taskName: "walk a dog", taskNumber: 0, status: "unfinished", },
+        {taskName: "feed the cat", taskNumber: 1, status: "finished"},
+        {taskName: "buy some vegies", taskNumber: 2, status: "unfinished"},
+        {taskName: "clean the flat", taskNumber: 3, status: "finished"},
+        {taskName: "wash the window", taskNumber: 4, status: "finished"},
       ],
       filter : "all"
     }
     this.handleAddTask = this.handleAddTask.bind(this)
+    this.handleRemoveTask = this.handleRemoveTask.bind(this)
     this.handleFilterTasks = this.handleFilterTasks.bind(this)
   }
 
@@ -36,6 +37,7 @@ class TodoAppWrapper extends Component {
 
         const task = {
           taskName: event.target.value,
+          taskNumber: this.state.listOfTasks.length || 0,
           status: "unfinished"
         };
 
@@ -45,6 +47,20 @@ class TodoAppWrapper extends Component {
 
         document.getElementById("newTaskInput").value = '';
       }
+  }
+
+  handleRemoveTask (event) {
+    const tmpArr = this.state.listOfTasks;
+
+    if (tmpArr && tmpArr.length>0) {
+      const resultArr = tmpArr.filter(
+        arrItem => Number(arrItem.taskNumber) !== Number(event.target.value)
+      );
+
+      this.setState({
+        listOfTasks: resultArr
+      });
+    }
   }
 
   handleFilterTasks (event) {
@@ -57,7 +73,7 @@ class TodoAppWrapper extends Component {
     return (
       <section className="to-do-list_main-wrapper">
         <AddTaskField onClick={this.handleAddTask} />
-        <TasksContainer tasksList={this.state.listOfTasks} tasksFiltered={this.state.filter}/>
+        <TasksContainer tasksInfo={this.state} onClick={this.handleRemoveTask}/>
         <TasksFooter totalTasks={this.state.listOfTasks.length} onClick={this.handleFilterTasks} filter={this.state.filter}/>
       </section>
     );
