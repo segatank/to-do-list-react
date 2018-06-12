@@ -18,7 +18,10 @@ class TasksContainer extends Component {
           <SingleTask
             taskNumber={arrAfterFiltering[i].taskNumber}
             taskName={arrAfterFiltering[i].taskName}
-            onClick={this.props.onClick}/>
+            taskStatus={arrAfterFiltering[i].status}
+            onClick={this.props.onClick}
+            onChange={this.props.onChange}
+          />
         </li>
       );
     }

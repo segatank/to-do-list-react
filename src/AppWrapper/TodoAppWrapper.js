@@ -22,6 +22,7 @@ class TodoAppWrapper extends Component {
     }
     this.handleAddTask = this.handleAddTask.bind(this)
     this.handleRemoveTask = this.handleRemoveTask.bind(this)
+    this.handleModifyTaskStatus = this.handleModifyTaskStatus.bind(this)
     this.handleFilterTasks = this.handleFilterTasks.bind(this)
   }
 
@@ -67,14 +68,27 @@ class TodoAppWrapper extends Component {
     });
   }
 
+  handleModifyTaskStatus (event) {
+    let tmpArr = this.state.listOfTasks;
+    tmpArr[Number(event.target.value)].status === "finished" ?
+      tmpArr[Number(event.target.value)].status = "unfinished" :
+      tmpArr[Number(event.target.value)].status = "finished";
+    this.setState({
+      listOfTasks: tmpArr
+    });
+  }
+
 
   render() {
     return (
       <section className="to-do-list_main-wrapper">
-        <AddTaskField onClick={this.handleAddTask} />
+        <AddTaskField
+          onClick={this.handleAddTask}
+        />
         <TasksContainer
           tasksInfo={this.state}
           onClick={this.handleRemoveTask}
+          onChange={this.handleModifyTaskStatus}
         />
         <TasksFooter
           totalTasks={this.state.listOfTasks.length}
