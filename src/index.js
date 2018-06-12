@@ -8,7 +8,6 @@ import AppWrapper from './AppWrapper/TodoAppWrapper.js';
 import './index.css';
 
 ReactDOM.render(
-  //<TaskBoard />,
   <AppWrapper />,
   document.getElementById('root')
 );

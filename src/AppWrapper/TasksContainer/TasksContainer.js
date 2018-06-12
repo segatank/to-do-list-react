@@ -15,13 +15,10 @@ class TasksContainer extends Component {
     for (let i=0; i < arrAfterFiltering.length; i++) {
       resultList.push(
         <li key={i.toString()}>
-          <input type="button" 
-            value={arrAfterFiltering[i].taskNumber}
-              onClick={this.props.onClick.bind(this)}/>
           <SingleTask
             taskNumber={arrAfterFiltering[i].taskNumber}
             taskName={arrAfterFiltering[i].taskName}
-            onClick={this.props.onClick.bind(null, this.props.onClick)}/>
+            onClick={this.props.onClick}/>
         </li>
       );
     }
@@ -33,7 +30,7 @@ class TasksContainer extends Component {
           : <li>
               <div className="container-list-single-item">
                 <label>Nothing to do.</label>
-                </div>
+              </div>
             </li>
         }
         </ul>

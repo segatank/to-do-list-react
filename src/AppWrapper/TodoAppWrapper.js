@@ -50,10 +50,8 @@ class TodoAppWrapper extends Component {
   }
 
   handleRemoveTask (event) {
-    const tmpArr = this.state.listOfTasks;
-
-    if (tmpArr && tmpArr.length>0) {
-      const resultArr = tmpArr.filter(
+    if (this.state.listOfTasks && this.state.listOfTasks.length > 0) {
+      const resultArr = this.state.listOfTasks.filter(
         arrItem => Number(arrItem.taskNumber) !== Number(event.target.value)
       );
 
@@ -69,12 +67,20 @@ class TodoAppWrapper extends Component {
     });
   }
 
+
   render() {
     return (
       <section className="to-do-list_main-wrapper">
         <AddTaskField onClick={this.handleAddTask} />
-        <TasksContainer tasksInfo={this.state} onClick={this.handleRemoveTask}/>
-        <TasksFooter totalTasks={this.state.listOfTasks.length} onClick={this.handleFilterTasks} filter={this.state.filter}/>
+        <TasksContainer
+          tasksInfo={this.state}
+          onClick={this.handleRemoveTask}
+        />
+        <TasksFooter
+          totalTasks={this.state.listOfTasks.length}
+          onClick={this.handleFilterTasks}
+          filter={this.state.filter}
+        />
       </section>
     );
   }
