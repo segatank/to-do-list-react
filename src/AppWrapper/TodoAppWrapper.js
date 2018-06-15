@@ -12,7 +12,7 @@ class TodoAppWrapper extends Component {
 
     this.state = {
       listOfTasks : [
-        {taskName: "walk a dog", taskNumber: generateUniqueId(), status: "unfinished", },
+        {taskName: "walk a dog", taskNumber: generateUniqueId(), status: "unfinished"},
         {taskName: "feed the cat", taskNumber: generateUniqueId(), status: "finished"},
         {taskName: "buy some vegies", taskNumber: generateUniqueId(), status: "unfinished"},
         {taskName: "clean the flat", taskNumber: generateUniqueId(), status: "finished"},
@@ -69,23 +69,16 @@ class TodoAppWrapper extends Component {
   }
 
   handleModifyTaskStatus (event) {
-    const tmpArr = this.state.listOfTasks;
-    let updatedTask;
-    let index;
-
-    for (let i = 0; i < this.state.listOfTasks.length; i++) {
-      if (this.state.listOfTasks[i].taskNumber === event.target.value) {
-        updatedTask = this.state.listOfTasks[i];
-        updatedTask.status === "finished" ?
-          updatedTask.status = "unfinished" :
-          updatedTask.status = "finished";
-        index = i;
-      }
-    }
-    tmpArr[index] = updatedTask;
-
+    const newArr = this.state.listOfTasks.map (function (arrItem) {
+        if (arrItem.taskNumber === event.target.value) {
+          arrItem.status === "finished" ?
+            arrItem.status = "unfinished" :
+            arrItem.status = "finished";
+        }
+        return arrItem;
+    });
     this.setState({
-      listOfTasks: tmpArr
+      listOfTasks: newArr
     });
   }
 
