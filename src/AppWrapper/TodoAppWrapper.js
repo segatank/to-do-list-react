@@ -5,25 +5,37 @@ import TasksFooter from './TasksFooter/TasksFooter.js';
 
 import './TodoAppWrapper.css';
 
+const dummyValues = [
+  {taskName: "walk a dog", taskNumber: generateUniqueId(), status: "unfinished"},
+  {taskName: "feed the cat", taskNumber: generateUniqueId(), status: "finished"},
+  {taskName: "buy some vegies", taskNumber: generateUniqueId(), status: "unfinished"},
+  {taskName: "clean the flat", taskNumber: generateUniqueId(), status: "finished"},
+  {taskName: "wash the window", taskNumber: generateUniqueId(), status: "finished"},
+];
 
 class TodoAppWrapper extends Component {
   constructor (props) {
     super(props);
 
     this.state = {
-      listOfTasks : [
-        {taskName: "walk a dog", taskNumber: generateUniqueId(), status: "unfinished"},
-        {taskName: "feed the cat", taskNumber: generateUniqueId(), status: "finished"},
-        {taskName: "buy some vegies", taskNumber: generateUniqueId(), status: "unfinished"},
-        {taskName: "clean the flat", taskNumber: generateUniqueId(), status: "finished"},
-        {taskName: "wash the window", taskNumber: generateUniqueId(), status: "finished"},
-      ],
+      listOfTasks : dummyValues,
       filter : "all"
     }
+    
     this.handleAddTask = this.handleAddTask.bind(this)
     this.handleRemoveTask = this.handleRemoveTask.bind(this)
     this.handleModifyTaskStatus = this.handleModifyTaskStatus.bind(this)
     this.handleFilterTasks = this.handleFilterTasks.bind(this)
+  }
+
+  componentWillMount () {
+    localStorage.getItem('listOfTasks') && this.setState({
+      listOfTasks: JSON.parse(localStorage.getItem('listOfTasks'))
+    })
+  }
+
+  componentWillUpdate (nextProps, nextState) {
+    localStorage.setItem('listOfTasks', JSON.stringify(nextState.listOfTasks));
   }
 
   handleAddTask (event) {
