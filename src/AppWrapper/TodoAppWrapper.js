@@ -18,10 +18,10 @@ class TodoAppWrapper extends Component {
     super(props);
 
     this.state = {
-      listOfTasks : dummyValues,
+      listOfTasks : [],
       filter : "all"
     }
-    
+
     this.handleAddTask = this.handleAddTask.bind(this)
     this.handleRemoveTask = this.handleRemoveTask.bind(this)
     this.handleModifyTaskStatus = this.handleModifyTaskStatus.bind(this)
@@ -29,13 +29,31 @@ class TodoAppWrapper extends Component {
   }
 
   componentWillMount () {
-    localStorage.getItem('listOfTasks') && this.setState({
+    //it is possible to move this code straight to constructor
+    localStorage.getItem('listOfTasks') ? this.setState({
       listOfTasks: JSON.parse(localStorage.getItem('listOfTasks'))
+    }) : this.setState({
+      listOfTasks: dummyValues
+    });
+    localStorage.getItem('filter') ? this.setState({
+      filter: JSON.parse(localStorage.getItem('filter'))
+    }) : this.setState({
+      filter: "all"
     })
   }
 
-  componentWillUpdate (nextProps, nextState) {
-    localStorage.setItem('listOfTasks', JSON.stringify(nextState.listOfTasks));
+  componentDidMount () {
+    window.addEventListener('beforeunload', this.saveTasksToLocStorage.bind(this));
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('beforeunload', this.saveTasksToLocStorage.bind(this));
+  }
+
+  saveTasksToLocStorage (event) {
+    for (let key in this.state) {
+      localStorage.setItem(key, JSON.stringify(this.state[key]));
+    }
   }
 
   handleAddTask (event) {
