@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ListOwner from './ListOwner/ListOwner.js';
 import AddTaskField from './AddTaskField/AddTaskField.js';
 import TasksContainer from './TasksContainer/TasksContainer.js';
 import TasksFooter from './TasksFooter/TasksFooter.js';
@@ -19,13 +20,15 @@ class TodoAppWrapper extends Component {
 
     this.state = {
       listOfTasks : [],
-      filter : "all"
+      filter  : "all",
+      listOwner : "anon"
     }
 
-    this.handleAddTask = this.handleAddTask.bind(this)
-    this.handleRemoveTask = this.handleRemoveTask.bind(this)
-    this.handleModifyTaskStatus = this.handleModifyTaskStatus.bind(this)
-    this.handleFilterTasks = this.handleFilterTasks.bind(this)
+    this.handleAddTask = this.handleAddTask.bind(this);
+    this.handleRemoveTask = this.handleRemoveTask.bind(this);
+    this.handleModifyTaskStatus = this.handleModifyTaskStatus.bind(this);
+    this.handleFilterTasks = this.handleFilterTasks.bind(this);
+    this.handleSetOwnersName = this.handleSetOwnersName.bind(this);
   }
 
   componentWillMount () {
@@ -53,6 +56,22 @@ class TodoAppWrapper extends Component {
   saveTasksToLocStorage (event) {
     for (let key in this.state) {
       localStorage.setItem(key, JSON.stringify(this.state[key]));
+    }
+  }
+
+  handleSetOwnersName (event) {
+    const ENTER_KEY = 13;
+
+    if (event.keyCode !== ENTER_KEY) {
+      return;
+    }
+
+    if (event.target.value.length > 0) {
+      event.preventDefault();
+
+      this.setState({
+        listOwner: event.target.value
+      });
     }
   }
 
@@ -116,8 +135,12 @@ class TodoAppWrapper extends Component {
   render() {
     return (
       <section className="to-do-list_main-wrapper">
+        <ListOwner
+          listOwner={this.state.listOwner}
+          onKeyDown={this.handleSetOwnersName}
+        />
         <AddTaskField
-          onClick={this.handleAddTask}
+          onKeyDown={this.handleAddTask}
         />
         <TasksContainer
           tasksInfo={this.state}

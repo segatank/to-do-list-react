@@ -1,0 +1,23 @@
+
+.list-owner {
+  font-size: 18px;
+  text-align: center;
+}
+
+.list-owner_edit-field {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 650px;
+  width: 160px;
+  height: 24px;
+  text-align: center;
+  font-size: 18px;
+  box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.edit-owner-active {
+  display: inline;
+  top: 40px;
+  left: 650px;
+}

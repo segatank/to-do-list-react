@@ -10,7 +10,7 @@ function AddTaskField (props) {
         type="text"
         className="to-do-list_input-field"
         placeholder="add new task"
-        onKeyDown={props.onClick.bind(this)}/>
+        onKeyDown={props.onKeyDown.bind(this)}/>
     </div>
   );
 }

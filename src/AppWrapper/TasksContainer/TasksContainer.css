@@ -29,6 +29,9 @@ label {
 
 ul {
   list-style: none;
+  position: relative;
+  font-size: 18px;
+  border-bottom: 1px solid #ededed;
 }
 
 li:hover .item-button_hidden {
@@ -37,7 +40,7 @@ li:hover .item-button_hidden {
 /*almost works*/
 li .item-button_hidden2 {
     display: none;
-    /*position: absolute;*/
+    position: absolute;
     /*z-index: 1000;*/
     /*float: left;*/
     top: 0;
