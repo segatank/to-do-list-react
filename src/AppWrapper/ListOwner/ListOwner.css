@@ -4,8 +4,8 @@
   text-align: center;
 }
 
-.list-owner_edit-field {
-  display: none;
+.list-owner-field {
+  display: block;
   position: absolute;
   top: 40px;
   left: 650px;
@@ -16,8 +16,6 @@
   box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
-.edit-owner-active {
-  display: inline;
-  top: 40px;
-  left: 650px;
+.edit-owner-field_hidden {
+  display: none;
 }

@@ -21,7 +21,7 @@ class TodoAppWrapper extends Component {
     this.state = {
       listOfTasks : [],
       filter  : "all",
-      listOwner : "anon"
+      listOwner : ''
     }
 
     this.handleAddTask = this.handleAddTask.bind(this);
@@ -42,18 +42,23 @@ class TodoAppWrapper extends Component {
       filter: JSON.parse(localStorage.getItem('filter'))
     }) : this.setState({
       filter: "all"
+    });
+    localStorage.getItem('listOwner') ? this.setState({
+      listOwner: JSON.parse(localStorage.getItem('listOwner'))
+    }) : this.setState({
+      listOwner: "anon"
     })
   }
 
   componentDidMount () {
-    window.addEventListener('beforeunload', this.saveTasksToLocStorage.bind(this));
+    window.addEventListener('beforeunload', this.saveAllToLocStorage.bind(this));
   }
 
   componentWillUnmount () {
-    window.removeEventListener('beforeunload', this.saveTasksToLocStorage.bind(this));
+    window.removeEventListener('beforeunload', this.saveAllToLocStorage.bind(this));
   }
 
-  saveTasksToLocStorage (event) {
+  saveAllToLocStorage (event) {
     for (let key in this.state) {
       localStorage.setItem(key, JSON.stringify(this.state[key]));
     }
@@ -72,6 +77,9 @@ class TodoAppWrapper extends Component {
       this.setState({
         listOwner: event.target.value
       });
+
+      document.getElementById("editOwner").value = '';
+      document.getElementById("editOwner").classList.add('edit-owner-field_hidden');
     }
   }
 

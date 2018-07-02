@@ -4,15 +4,23 @@ import './ListOwner.css';
 function ListOwner (props) {
   return (
     <div>
-      <h2 className="list-owner">{getRandomGreeting()}, {props.listOwner}!</h2>
+      <h2 className="list-owner"
+        onDoubleClick={(event)=>changeOwner()}>
+        {getRandomGreeting()}, {props.listOwner}!</h2>
       <input
         id="editOwner"
         type="text"
-        className="list-owner_edit-field"
+        className="list-owner-field edit-owner-field_hidden"
         onKeyDown={props.onKeyDown.bind(this)}
         />
     </div>
   );
+}
+
+function changeOwner () {
+  if (document.getElementById("editOwner").classList.contains('edit-owner-field_hidden')) {
+    document.getElementById("editOwner").classList.remove('edit-owner-field_hidden');
+  }
 }
 
 function getRandomGreeting () {
