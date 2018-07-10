@@ -6,7 +6,7 @@ function ListOwner (props) {
     <div>
       <h2 className="list-owner"
         onDoubleClick={(event)=>changeOwner()}>
-        {getRandomGreeting()}, {props.listOwner}!</h2>
+        Hello, {props.listOwner}!</h2>
       <input
         id="editOwner"
         type="text"
@@ -31,7 +31,7 @@ function editModeOff () {
     document.getElementById("editOwner").value = '';
   }
 }
-
+//removed for now
 function getRandomGreeting () {
   const greetArray = [
     "Hello", "Howdy", "Hey", "Hi", "Sup`", "Yo", "Hiya",

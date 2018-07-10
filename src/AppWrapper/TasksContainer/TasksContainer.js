@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SingleTask from './SingleTask/SingleTask.js';
 import './TasksContainer.css';
 
 
-class TasksContainer extends Component {
+function TasksContainer (props) {
 
-  render() {
-    const arrAfterFiltering = this.props.tasksInfo.filter === "all"
-                                ? this.props.tasksInfo.listOfTasks
-                                : this.props.tasksInfo.listOfTasks.filter(
-                                  element => element.status === this.props.tasksInfo.filter)
+    const arrAfterFiltering = props.tasksInfo.filter === "all"
+                                ? props.tasksInfo.listOfTasks
+                                : props.tasksInfo.listOfTasks.filter(
+                                  element => element.status === props.tasksInfo.filter)
     const isItems = arrAfterFiltering.length > 0;
     const resultList = [];
     for (let i=0; i < arrAfterFiltering.length; i++) {
@@ -19,8 +18,8 @@ class TasksContainer extends Component {
             taskNumber={arrAfterFiltering[i].taskNumber}
             taskName={arrAfterFiltering[i].taskName}
             taskStatus={arrAfterFiltering[i].status}
-            onClick={this.props.onClick}
-            onChange={this.props.onChange}
+            onClick={props.onClick}
+            onChange={props.onChange}
           />
         </li>
       );
@@ -39,7 +38,7 @@ class TasksContainer extends Component {
         </ul>
       </div>
     )
-  }
+
 }
 
 export default TasksContainer;

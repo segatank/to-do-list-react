@@ -54,6 +54,13 @@ class TodoAppWrapper extends Component {
     window.addEventListener('beforeunload', this.saveAllToLocStorage.bind(this));
   }
 
+  //shouldComponentUpdate (nextProps, nextState) {
+  //  console.log('should Component Update');
+    //return nextState.listOwner !== this.state.listOwner;
+    //return nextState.filter !== this.state.filter
+    //  || JSON.stringify(nextState.listOfTasks) !== JSON.stringify(this.state.listOfTasks);
+  //}
+
   componentWillUnmount () {
     window.removeEventListener('beforeunload', this.saveAllToLocStorage.bind(this));
   }
