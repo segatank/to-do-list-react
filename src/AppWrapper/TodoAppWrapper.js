@@ -27,6 +27,7 @@ class TodoAppWrapper extends Component {
     this.handleAddTask = this.handleAddTask.bind(this);
     this.handleRemoveTask = this.handleRemoveTask.bind(this);
     this.handleModifyTaskStatus = this.handleModifyTaskStatus.bind(this);
+    this.handleModifyTask = this.handleModifyTask.bind(this);
     this.handleFilterTasks = this.handleFilterTasks.bind(this);
     this.handleSetOwnersName = this.handleSetOwnersName.bind(this);
   }
@@ -146,6 +147,15 @@ class TodoAppWrapper extends Component {
     });
   }
 
+  handleModifyTask (event) {
+    const ENTER_KEY = 13;
+
+    if (event.keyCode !== ENTER_KEY) {
+      return;
+    }
+    console.log(event.target.value)
+  }
+
 
   render() {
     return (
@@ -161,6 +171,7 @@ class TodoAppWrapper extends Component {
           tasksInfo={this.state}
           onClick={this.handleRemoveTask}
           onChange={this.handleModifyTaskStatus}
+          onKeyDown={this.handleModifyTask}
         />
         <TasksFooter
           totalTasks={this.state.listOfTasks.length}

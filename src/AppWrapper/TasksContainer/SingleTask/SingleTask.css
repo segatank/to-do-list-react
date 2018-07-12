@@ -3,3 +3,18 @@
   color: #d9d9d9;
   text-decoration: line-through;
 }
+
+.item-input_edit {
+  position:relative;
+  left: 5px;
+  top: 2px;
+  width: 400px;
+  font-size: 18px;
+  border-radius: 1.5px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+
+.element_hidden {
+  display: block;
+}

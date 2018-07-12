@@ -20,6 +20,7 @@ function TasksContainer (props) {
             taskStatus={arrAfterFiltering[i].status}
             onClick={props.onClick}
             onChange={props.onChange}
+            onKeyDown={props.onKeyDown}
           />
         </li>
       );

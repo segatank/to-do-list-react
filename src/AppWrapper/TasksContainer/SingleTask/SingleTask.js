@@ -13,6 +13,11 @@ function SingleTask (props) {
           <label className={
               props.taskStatus === "finished" ? "to-do-list-completed" : ""
             }>{props.taskName}</label>
+          <input
+            className="item-input_edit element_hidden"
+            type="text"
+            defaultValue={props.taskName}
+            onKeyDown={props.onKeyDown}/>
           <button className="item-button_hidden" value={props.taskNumber} onClick={props.onClick}>X</button>
         </div>
     );
