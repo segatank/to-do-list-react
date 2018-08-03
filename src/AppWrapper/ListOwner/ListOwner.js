@@ -5,7 +5,7 @@ function ListOwner (props) {
   return (
     <div>
       <h2 className="list-owner"
-        onDoubleClick={(event)=>changeOwner()}>
+        onDoubleClick={(event)=>changeOwner(event)}>
         Hello, {props.listOwner}!</h2>
       <input
         id="editOwner"
@@ -18,9 +18,11 @@ function ListOwner (props) {
   );
 }
 
-function changeOwner () {
+function changeOwner (event) {
   if (document.getElementById("editOwner").classList.contains('edit-owner-field_hidden')) {
     document.getElementById("editOwner").classList.remove('edit-owner-field_hidden');
+    const posX = (event.clientX - 80)+"px";
+    document.getElementById("editOwner").style["left"] = posX;
     document.getElementById("editOwner").focus();
   }
 }
