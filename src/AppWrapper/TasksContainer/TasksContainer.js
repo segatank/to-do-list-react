@@ -1,7 +1,7 @@
 import React from 'react';
 import SingleTask from './SingleTask/SingleTask.js';
 import './TasksContainer.css';
-
+import { generateUniqueId } from '../../globalFunctions.js';
 
 function TasksContainer (props) {
 
@@ -13,7 +13,7 @@ function TasksContainer (props) {
     const resultList = [];
     for (let i=0; i < arrAfterFiltering.length; i++) {
       resultList.push(
-        <li key={i.toString()}>
+        <li key={generateUniqueId()}>
           <SingleTask
             taskNumber={arrAfterFiltering[i].taskNumber}
             taskName={arrAfterFiltering[i].taskName}

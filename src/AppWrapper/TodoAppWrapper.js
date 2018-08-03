@@ -5,6 +5,7 @@ import TasksContainer from './TasksContainer/TasksContainer.js';
 import TasksFooter from './TasksFooter/TasksFooter.js';
 
 import './TodoAppWrapper.css';
+import { generateUniqueId } from '../globalFunctions.js';
 
 const dummyValues = [
   {taskName: "walk a dog", taskNumber: generateUniqueId(), status: "unfinished"},
@@ -181,12 +182,6 @@ class TodoAppWrapper extends Component {
       </section>
     );
   }
-}
-
-function generateUniqueId () {
-  let shortid = require('shortid');
-
-  return shortid.generate();
 }
 
 export default TodoAppWrapper;
