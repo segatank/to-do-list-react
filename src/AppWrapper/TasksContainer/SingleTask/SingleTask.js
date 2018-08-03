@@ -3,7 +3,9 @@ import './SingleTask.css';
 
 function SingleTask (props) {
     return (
-        <div className="container-list-single-item">
+        <div
+          className="container-list-single-item"
+          >
           <input
             type="checkbox"
             onChange={props.onChange}
@@ -12,7 +14,10 @@ function SingleTask (props) {
           />
           <label className={
               props.taskStatus === "finished" ? "to-do-list-completed" : ""
-            }>{props.taskName}</label>
+            }
+            onDoubleClick={(event) => editTasksContent(event)}>
+            {props.taskName}
+          </label>
           <input
             className="item-input_edit element_hidden"
             type="text"
@@ -21,6 +26,10 @@ function SingleTask (props) {
           <button className="item-button_hidden" value={props.taskNumber} onClick={props.onClick}>X</button>
         </div>
     );
+}
+
+function editTasksContent(event) {
+  console.log(event.target)
 }
 
 export default SingleTask;
