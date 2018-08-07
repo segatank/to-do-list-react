@@ -12,24 +12,48 @@ function SingleTask (props) {
             value={props.taskNumber}
             defaultChecked={props.taskStatus === "finished" ? true : false}
           />
-          <label className={
+          <label
+            htmlFor={props.taskNumber}
+            className={
               props.taskStatus === "finished" ? "to-do-list-completed" : ""
             }
             onDoubleClick={(event) => editTasksContent(event)}>
             {props.taskName}
           </label>
           <input
+            id={props.taskNumber}
             className="item-input_edit element_hidden"
             type="text"
             defaultValue={props.taskName}
-            onKeyDown={props.onKeyDown}/>
+            onKeyDown={props.onKeyDown}
+            onBlur={(event)=>editModeOff(event)}
+          />
           <button className="item-button_hidden" value={props.taskNumber} onClick={props.onClick}>X</button>
         </div>
     );
 }
 
 function editTasksContent(event) {
-  console.log(event.target)
+  const labelElem = event.target;
+  const inputId = labelElem.htmlFor;
+
+  if (document.getElementById(inputId).classList.contains('element_hidden')) {
+    labelElem.classList.add('element_hidden');
+    document.getElementById(inputId).classList.remove('element_hidden');
+  } else {
+    labelElem.classList.remove('element_hidden');
+    document.getElementById(inputId).classList.add('element_hidden');
+  }
+}
+
+function editModeOff (event) {
+  const element = event.target;
+  const elementId = element.id;
+
+  if (!document.getElementById(elementId).classList.contains('element_hidden')) {
+    document.getElementById(elementId).classList.add('element_hidden');
+    document.getElementById(elementId).value = '';
+  }
 }
 
 export default SingleTask;

@@ -75,6 +75,13 @@ class TodoAppWrapper extends Component {
 
   handleSetOwnersName (event) {
     const ENTER_KEY = 13;
+    const ESCAPE_KEY = 27;
+
+    if (event.keyCode === ESCAPE_KEY) {
+      document.getElementById("editOwner").value = '';
+      document.getElementById("editOwner").classList.add('edit-owner-field_hidden');
+      return;
+    }
 
     if (event.keyCode !== ENTER_KEY) {
       return;
@@ -87,8 +94,8 @@ class TodoAppWrapper extends Component {
         listOwner: event.target.value
       });
 
-      document.getElementById("editOwner").value = '';
-      document.getElementById("editOwner").classList.add('edit-owner-field_hidden');
+      event.target.value = '';
+      event.target.classList.add('edit-owner-field_hidden');
     }
   }
 
@@ -154,7 +161,23 @@ class TodoAppWrapper extends Component {
     if (event.keyCode !== ENTER_KEY) {
       return;
     }
-    console.log(event.target.value)
+
+    if (event.target.value.length > 0) {
+      event.preventDefault();
+
+      const newArr = this.state.listOfTasks.map (function (arrItem) {
+          if (arrItem.taskNumber === event.target.id) {
+            arrItem.taskName = event.target.value;
+          }
+          return arrItem;
+      });
+      this.setState({
+        listOfTasks: newArr
+      });
+
+      event.target.value = '';
+      event.target.classList.add('element_hidden');
+    }
   }
 
 

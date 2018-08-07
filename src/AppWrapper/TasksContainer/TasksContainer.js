@@ -12,8 +12,9 @@ function TasksContainer (props) {
     const isItems = arrAfterFiltering.length > 0;
     const resultList = [];
     for (let i=0; i < arrAfterFiltering.length; i++) {
+      let keyMorphling = generateUniqueId();
       resultList.push(
-        <li key={generateUniqueId()}>
+        <li key={keyMorphling}>
           <SingleTask
             taskNumber={arrAfterFiltering[i].taskNumber}
             taskName={arrAfterFiltering[i].taskName}

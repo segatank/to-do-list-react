@@ -12,7 +12,7 @@ function ListOwner (props) {
         type="text"
         className="list-owner-field edit-owner-field_hidden"
         onKeyDown={props.onKeyDown.bind(this)}
-        onBlur={(event)=>editModeOff()}
+        onBlur={(event)=>editModeOff(event)}
         />
     </div>
   );
@@ -27,10 +27,13 @@ function changeOwner (event) {
   }
 }
 
-function editModeOff () {
-  if (!document.getElementById("editOwner").classList.contains('edit-owner-field_hidden')) {
-    document.getElementById("editOwner").classList.add('edit-owner-field_hidden');
-    document.getElementById("editOwner").value = '';
+function editModeOff (event) {
+  const element = event.target;
+  const elementId = element.id;
+
+  if (!document.getElementById(elementId).classList.contains('edit-owner-field_hidden')) {
+    document.getElementById(elementId).classList.add('edit-owner-field_hidden');
+    document.getElementById(elementId).value = '';
   }
 }
 //removed for now
