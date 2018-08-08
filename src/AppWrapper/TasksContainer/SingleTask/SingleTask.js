@@ -1,5 +1,6 @@
 import React from 'react';
 import './SingleTask.css';
+import { editModeOff } from '../../../globalFunctions.js';
 
 function SingleTask (props) {
     return (
@@ -26,9 +27,12 @@ function SingleTask (props) {
             type="text"
             defaultValue={props.taskName}
             onKeyDown={props.onKeyDown}
-            onBlur={(event)=>editModeOff(event)}
+            onBlur={(event) => editModeOff(event)}
           />
-          <button className="item-button_hidden" value={props.taskNumber} onClick={props.onClick}>X</button>
+          <button
+            className="item-button_hidden"
+            value={props.taskNumber}
+            onClick={props.onClick}>X</button>
         </div>
     );
 }
@@ -40,19 +44,10 @@ function editTasksContent(event) {
   if (document.getElementById(inputId).classList.contains('element_hidden')) {
     labelElem.classList.add('element_hidden');
     document.getElementById(inputId).classList.remove('element_hidden');
+    document.getElementById(inputId).focus();
   } else {
     labelElem.classList.remove('element_hidden');
     document.getElementById(inputId).classList.add('element_hidden');
-  }
-}
-
-function editModeOff (event) {
-  const element = event.target;
-  const elementId = element.id;
-
-  if (!document.getElementById(elementId).classList.contains('element_hidden')) {
-    document.getElementById(elementId).classList.add('element_hidden');
-    document.getElementById(elementId).value = '';
   }
 }
 

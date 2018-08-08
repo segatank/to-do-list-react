@@ -5,7 +5,7 @@ import TasksContainer from './TasksContainer/TasksContainer.js';
 import TasksFooter from './TasksFooter/TasksFooter.js';
 
 import './TodoAppWrapper.css';
-import { generateUniqueId } from '../globalFunctions.js';
+import { ENTER_KEY, ESCAPE_KEY, generateUniqueId } from '../globalFunctions.js';
 
 const dummyValues = [
   {taskName: "walk a dog", taskNumber: generateUniqueId(), status: "unfinished"},
@@ -74,12 +74,11 @@ class TodoAppWrapper extends Component {
   }
 
   handleSetOwnersName (event) {
-    const ENTER_KEY = 13;
-    const ESCAPE_KEY = 27;
-
     if (event.keyCode === ESCAPE_KEY) {
-      document.getElementById("editOwner").value = '';
-      document.getElementById("editOwner").classList.add('edit-owner-field_hidden');
+      // document.getElementById("editOwner").value = '';
+      // document.getElementById("editOwner").classList.add('element_hidden');
+      document.getElementById(event.target.id).value = '';
+      document.getElementById(event.target.id).classList.add('element_hidden');
       return;
     }
 
@@ -95,13 +94,11 @@ class TodoAppWrapper extends Component {
       });
 
       event.target.value = '';
-      event.target.classList.add('edit-owner-field_hidden');
+      event.target.classList.add('element_hidden');
     }
   }
 
   handleAddTask (event) {
-      const ENTER_KEY = 13;
-
       if (event.keyCode !== ENTER_KEY) {
         return;
       }
@@ -156,7 +153,11 @@ class TodoAppWrapper extends Component {
   }
 
   handleModifyTask (event) {
-    const ENTER_KEY = 13;
+    if (event.keyCode === ESCAPE_KEY) {
+      document.getElementById(event.target.id).value = '';
+      document.getElementById(event.target.id).classList.add('element_hidden');
+      return;
+    }
 
     if (event.keyCode !== ENTER_KEY) {
       return;

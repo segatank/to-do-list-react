@@ -1,5 +1,6 @@
 import React from 'react';
 import './ListOwner.css';
+import { editModeOff } from '../../globalFunctions.js';
 
 function ListOwner (props) {
   return (
@@ -10,7 +11,8 @@ function ListOwner (props) {
       <input
         id="editOwner"
         type="text"
-        className="list-owner-field edit-owner-field_hidden"
+        className="list-owner-field element_hidden"
+        defaultValue={props.listOwner}
         onKeyDown={props.onKeyDown.bind(this)}
         onBlur={(event)=>editModeOff(event)}
         />
@@ -19,32 +21,12 @@ function ListOwner (props) {
 }
 
 function changeOwner (event) {
-  if (document.getElementById("editOwner").classList.contains('edit-owner-field_hidden')) {
-    document.getElementById("editOwner").classList.remove('edit-owner-field_hidden');
+  if (document.getElementById("editOwner").classList.contains('element_hidden')) {
+    document.getElementById("editOwner").classList.remove('element_hidden');
     const posX = (event.clientX - 80)+"px";
     document.getElementById("editOwner").style["left"] = posX;
     document.getElementById("editOwner").focus();
   }
-}
-
-function editModeOff (event) {
-  const element = event.target;
-  const elementId = element.id;
-
-  if (!document.getElementById(elementId).classList.contains('edit-owner-field_hidden')) {
-    document.getElementById(elementId).classList.add('edit-owner-field_hidden');
-    document.getElementById(elementId).value = '';
-  }
-}
-//removed for now
-function getRandomGreeting () {
-  const greetArray = [
-    "Hello", "Howdy", "Hey", "Hi", "Sup`", "Yo", "Hiya",
-    "What`s up", "Good time of the day", "Greetings",
-    "Salute", "Hail", "G'day"
-  ];
-
-  return greetArray[Math.round(Math.random() * (greetArray.length - 0) + 0)];
 }
 
 export default ListOwner;
