@@ -3,7 +3,6 @@ import ListOwner from './ListOwner/ListOwner.js';
 import AddTaskField from './AddTaskField/AddTaskField.js';
 import TasksContainer from './TasksContainer/TasksContainer.js';
 import TasksFooter from './TasksFooter/TasksFooter.js';
-
 import './TodoAppWrapper.css';
 import { ENTER_KEY, ESCAPE_KEY, generateUniqueId } from '../globalFunctions.js';
 
@@ -35,21 +34,27 @@ class TodoAppWrapper extends Component {
 
   componentWillMount () {
     //it is possible to move this code straight to constructor
-    localStorage.getItem('listOfTasks') ? this.setState({
-      listOfTasks: JSON.parse(localStorage.getItem('listOfTasks'))
-    }) : this.setState({
-      listOfTasks: dummyValues
-    });
-    localStorage.getItem('filter') ? this.setState({
-      filter: JSON.parse(localStorage.getItem('filter'))
-    }) : this.setState({
-      filter: "all"
-    });
-    localStorage.getItem('listOwner') ? this.setState({
-      listOwner: JSON.parse(localStorage.getItem('listOwner'))
-    }) : this.setState({
-      listOwner: "anon"
-    })
+    localStorage.getItem('listOfTasks')
+      ? this.setState({
+          listOfTasks: JSON.parse(localStorage.getItem('listOfTasks'))
+        })
+      : this.setState({
+          listOfTasks: dummyValues
+        });
+    localStorage.getItem('filter')
+      ? this.setState({
+          filter: JSON.parse(localStorage.getItem('filter'))
+        })
+      : this.setState({
+          filter: "all"
+        });
+    localStorage.getItem('listOwner')
+      ? this.setState({
+          listOwner: JSON.parse(localStorage.getItem('listOwner'))
+        })
+      : this.setState({
+          listOwner: "anon"
+        });
   }
 
   componentDidMount () {
@@ -67,7 +72,7 @@ class TodoAppWrapper extends Component {
     window.removeEventListener('beforeunload', this.saveAllToLocStorage.bind(this));
   }
 
-  saveAllToLocStorage (event) {
+  saveAllToLocStorage () {
     for (let key in this.state) {
       localStorage.setItem(key, JSON.stringify(this.state[key]));
     }
@@ -75,8 +80,6 @@ class TodoAppWrapper extends Component {
 
   handleSetOwnersName (event) {
     if (event.keyCode === ESCAPE_KEY) {
-      // document.getElementById("editOwner").value = '';
-      // document.getElementById("editOwner").classList.add('element_hidden');
       document.getElementById(event.target.id).value = '';
       document.getElementById(event.target.id).classList.add('element_hidden');
       return;
@@ -104,8 +107,6 @@ class TodoAppWrapper extends Component {
       }
 
       if (event.target.value.length > 0) {
-        event.preventDefault();
-
         const task = {
           taskName: event.target.value,
           taskNumber: generateUniqueId(),
@@ -141,9 +142,9 @@ class TodoAppWrapper extends Component {
   handleModifyTaskStatus (event) {
     const newArr = this.state.listOfTasks.map (function (arrItem) {
         if (arrItem.taskNumber === event.target.value) {
-          arrItem.status === "finished" ?
-            arrItem.status = "unfinished" :
-            arrItem.status = "finished";
+          arrItem.status === "finished"
+            ? arrItem.status = "unfinished"
+            : arrItem.status = "finished";
         }
         return arrItem;
     });
@@ -154,8 +155,15 @@ class TodoAppWrapper extends Component {
 
   handleModifyTask (event) {
     if (event.keyCode === ESCAPE_KEY) {
-      document.getElementById(event.target.id).value = '';
       document.getElementById(event.target.id).classList.add('element_hidden');
+      const labelsArr = document.getElementsByTagName("label");
+
+      for (let i = 0; i < labelsArr.length; i++) {
+        if (labelsArr[i].htmlFor === event.target.id) {
+          document.getElementsByTagName("label")[i].classList.remove('element_hidden');
+        }
+      }
+
       return;
     }
 
@@ -164,8 +172,6 @@ class TodoAppWrapper extends Component {
     }
 
     if (event.target.value.length > 0) {
-      event.preventDefault();
-
       const newArr = this.state.listOfTasks.map (function (arrItem) {
           if (arrItem.taskNumber === event.target.id) {
             arrItem.taskName = event.target.value;
@@ -175,9 +181,6 @@ class TodoAppWrapper extends Component {
       this.setState({
         listOfTasks: newArr
       });
-
-      event.target.value = '';
-      event.target.classList.add('element_hidden');
     }
   }
 

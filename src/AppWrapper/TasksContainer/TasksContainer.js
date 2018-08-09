@@ -7,14 +7,15 @@ function TasksContainer (props) {
 
     const arrAfterFiltering = props.tasksInfo.filter === "all"
                                 ? props.tasksInfo.listOfTasks
-                                : props.tasksInfo.listOfTasks.filter(
-                                  element => element.status === props.tasksInfo.filter)
+                                : props.tasksInfo.listOfTasks
+                                    .filter(element =>
+                                        element.status === props.tasksInfo.filter
+                                    );
     const isItems = arrAfterFiltering.length > 0;
     const resultList = [];
     for (let i=0; i < arrAfterFiltering.length; i++) {
-      let keyMorphling = generateUniqueId();
       resultList.push(
-        <li key={keyMorphling}>
+        <li key={generateUniqueId()}>
           <SingleTask
             taskNumber={arrAfterFiltering[i].taskNumber}
             taskName={arrAfterFiltering[i].taskName}

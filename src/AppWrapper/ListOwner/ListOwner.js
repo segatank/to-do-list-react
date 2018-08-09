@@ -6,7 +6,7 @@ function ListOwner (props) {
   return (
     <div>
       <h2 className="list-owner"
-        onDoubleClick={(event)=>changeOwner(event)}>
+        onDoubleClick={(event) => changeOwner(event)}>
         Hello, {props.listOwner}!</h2>
       <input
         id="editOwner"
@@ -14,8 +14,8 @@ function ListOwner (props) {
         className="list-owner-field element_hidden"
         defaultValue={props.listOwner}
         onKeyDown={props.onKeyDown.bind(this)}
-        onBlur={(event)=>editModeOff(event)}
-        />
+        onBlur={(event) => editModeOff(event)}
+      />
     </div>
   );
 }
