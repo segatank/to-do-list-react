@@ -4,7 +4,6 @@ import './TasksContainer.css';
 import { generateUniqueId } from '../../globalFunctions.js';
 
 function TasksContainer (props) {
-
     const arrAfterFiltering = props.tasksInfo.filter === "all"
                                 ? props.tasksInfo.listOfTasks
                                 : props.tasksInfo.listOfTasks
@@ -13,7 +12,7 @@ function TasksContainer (props) {
                                     );
     const isItems = arrAfterFiltering.length > 0;
     const resultList = [];
-    for (let i=0; i < arrAfterFiltering.length; i++) {
+    for (let i = 0; i < arrAfterFiltering.length; i++) {
       resultList.push(
         <li key={generateUniqueId()}>
           <SingleTask
@@ -41,7 +40,6 @@ function TasksContainer (props) {
         </ul>
       </div>
     )
-
 }
 
 export default TasksContainer;

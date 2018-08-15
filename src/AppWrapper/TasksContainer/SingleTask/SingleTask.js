@@ -45,11 +45,7 @@ function editTasksContent(event) {
     labelElem.classList.add('element_hidden');
     document.getElementById(inputId).classList.remove('element_hidden');
     document.getElementById(inputId).focus();
-  } //else {
-  //   labelElem.classList.remove('element_hidden');
-  //   document.getElementById(inputId).classList.add('element_hidden');
-  //   console.log("adding lbl")
-  // }
+  }
 }
 
 export default SingleTask;

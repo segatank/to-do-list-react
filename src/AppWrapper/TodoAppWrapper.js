@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ListOwner from './ListOwner/ListOwner.js';
 import AddTaskField from './AddTaskField/AddTaskField.js';
 import TasksContainer from './TasksContainer/TasksContainer.js';
@@ -14,7 +14,7 @@ const dummyValues = [
   {taskName: "wash the window", taskNumber: generateUniqueId(), status: "finished"},
 ];
 
-class TodoAppWrapper extends Component {
+class TodoAppWrapper extends PureComponent {
   constructor (props) {
     super(props);
 
@@ -60,13 +60,6 @@ class TodoAppWrapper extends Component {
   componentDidMount () {
     window.addEventListener('beforeunload', this.saveAllToLocStorage.bind(this));
   }
-
-  //shouldComponentUpdate (nextProps, nextState) {
-  //  console.log('should Component Update');
-    //return nextState.listOwner !== this.state.listOwner;
-    //return nextState.filter !== this.state.filter
-    //  || JSON.stringify(nextState.listOfTasks) !== JSON.stringify(this.state.listOfTasks);
-  //}
 
   componentWillUnmount () {
     window.removeEventListener('beforeunload', this.saveAllToLocStorage.bind(this));
