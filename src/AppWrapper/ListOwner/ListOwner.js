@@ -4,7 +4,7 @@ import { editModeOff } from '../../globalFunctions.js';
 
 function ListOwner (props) {
   return (
-    <div>
+    <React.Fragment>
       <h2 className="list-owner"
         onDoubleClick={(event) => changeOwner(event)}>
         Hello, {props.listOwner}!</h2>
@@ -16,7 +16,7 @@ function ListOwner (props) {
         onKeyDown={props.onKeyDown.bind(this)}
         onBlur={(event) => editModeOff(event)}
       />
-    </div>
+    </React.Fragment>
   );
 }
 

@@ -3,7 +3,7 @@ import './AddTaskField.css';
 
 function AddTaskField (props) {
   return (
-    <div>
+    <React.Fragment>
       <h3 className="to-do-list_header">What needs to be done:</h3>
       <input
         id="newTaskInput"
@@ -12,7 +12,7 @@ function AddTaskField (props) {
         placeholder="add new task"
         onKeyDown={props.onKeyDown.bind(this)}
       />
-    </div>
+    </React.Fragment>
   );
 }
 
