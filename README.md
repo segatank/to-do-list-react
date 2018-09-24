@@ -7,3 +7,6 @@ How to:
 - task can be checked/unchecked via checkbox;
 - by hovering mouse over task a button for deletion it can be deleted;
 - your task`s list is saved in localStorage.
+
+
+# Github pages link https://segatank.github.io/to-do-list-react/
