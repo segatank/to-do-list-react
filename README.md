@@ -9,4 +9,6 @@ How to:
 - your task`s list is saved in localStorage.
 
 
-# Github pages link https://segatank.github.io/to-do-list-react/
+# Github pages link
+
+https://segatank.github.io/to-do-list-react/
