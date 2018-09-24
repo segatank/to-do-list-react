@@ -7,22 +7,42 @@ import './TodoAppWrapper.css';
 import { ENTER_KEY, ESCAPE_KEY, generateUniqueId } from '../globalFunctions.js';
 
 const dummyValues = [
-  {taskName: "walk a dog", taskNumber: generateUniqueId(), status: "unfinished"},
-  {taskName: "feed the cat", taskNumber: generateUniqueId(), status: "finished"},
-  {taskName: "buy some vegies", taskNumber: generateUniqueId(), status: "unfinished"},
-  {taskName: "clean the flat", taskNumber: generateUniqueId(), status: "finished"},
-  {taskName: "wash the window", taskNumber: generateUniqueId(), status: "finished"},
+  {
+    taskName: 'walk a dog',
+    taskNumber: generateUniqueId(),
+    status: 'unfinished',
+  },
+  {
+    taskName: 'feed the cat',
+    taskNumber: generateUniqueId(),
+    status: 'finished',
+  },
+  {
+    taskName: 'buy some vegies',
+    taskNumber: generateUniqueId(),
+    status: 'unfinished',
+  },
+  {
+    taskName: 'clean the flat',
+    taskNumber: generateUniqueId(),
+    status: 'finished',
+  },
+  {
+    taskName: 'wash the window',
+    taskNumber: generateUniqueId(),
+    status: 'finished',
+  },
 ];
 
 class TodoAppWrapper extends PureComponent {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
-      listOfTasks : [],
-      filter  : "all",
-      listOwner : ''
-    }
+      listOfTasks: [],
+      filter: 'all',
+      listOwner: '',
+    };
 
     this.handleAddTask = this.handleAddTask.bind(this);
     this.handleRemoveTask = this.handleRemoveTask.bind(this);
@@ -32,46 +52,52 @@ class TodoAppWrapper extends PureComponent {
     this.handleSetOwnersName = this.handleSetOwnersName.bind(this);
   }
 
-  componentWillMount () {
+  componentWillMount() {
     //it is possible to move this code straight to constructor
     localStorage.getItem('listOfTasks')
       ? this.setState({
-          listOfTasks: JSON.parse(localStorage.getItem('listOfTasks'))
+          listOfTasks: JSON.parse(localStorage.getItem('listOfTasks')),
         })
       : this.setState({
-          listOfTasks: dummyValues
+          listOfTasks: dummyValues,
         });
     localStorage.getItem('filter')
       ? this.setState({
-          filter: JSON.parse(localStorage.getItem('filter'))
+          filter: JSON.parse(localStorage.getItem('filter')),
         })
       : this.setState({
-          filter: "all"
+          filter: 'all',
         });
     localStorage.getItem('listOwner')
       ? this.setState({
-          listOwner: JSON.parse(localStorage.getItem('listOwner'))
+          listOwner: JSON.parse(localStorage.getItem('listOwner')),
         })
       : this.setState({
-          listOwner: "anon"
+          listOwner: 'anon',
         });
   }
 
-  componentDidMount () {
-    window.addEventListener('beforeunload', this.saveAllToLocStorage.bind(this));
+  componentDidMount() {
+    window.addEventListener(
+      'beforeunload',
+      this.saveAllToLocStorage.bind(this)
+    );
   }
 
-  componentWillUnmount () {
-    window.removeEventListener('beforeunload', this.saveAllToLocStorage.bind(this));
+  componentWillUnmount() {
+    window.removeEventListener(
+      'beforeunload',
+      this.saveAllToLocStorage.bind(this)
+    );
   }
 
-  saveAllToLocStorage () {
+  saveAllToLocStorage() {
     for (let key in this.state) {
       localStorage.setItem(key, JSON.stringify(this.state[key]));
     }
   }
 
-  handleSetOwnersName (event) {
+  handleSetOwnersName(event) {
     if (event.keyCode === ESCAPE_KEY) {
       document.getElementById(event.target.id).value = '';
       document.getElementById(event.target.id).classList.add('element_hidden');
@@ -86,7 +112,7 @@ class TodoAppWrapper extends PureComponent {
       event.preventDefault();
 
       this.setState({
-        listOwner: event.target.value
+        listOwner: event.target.value,
       });
 
       event.target.value = '';
@@ -94,66 +120,68 @@ class TodoAppWrapper extends PureComponent {
     }
   }
 
-  handleAddTask (event) {
-      if (event.keyCode !== ENTER_KEY) {
-        return;
-      }
+  handleAddTask(event) {
+    if (event.keyCode !== ENTER_KEY) {
+      return;
+    }
 
-      if (event.target.value.length > 0) {
-        const task = {
-          taskName: event.target.value,
-          taskNumber: generateUniqueId(),
-          status: "unfinished"
-        };
+    if (event.target.value.length > 0) {
+      const task = {
+        taskName: event.target.value,
+        taskNumber: generateUniqueId(),
+        status: 'unfinished',
+      };
 
-        this.setState(prevState => ({
-          listOfTasks: [...prevState.listOfTasks, task]
-        }));
+      this.setState(prevState => ({
+        listOfTasks: [...prevState.listOfTasks, task],
+      }));
 
-        document.getElementById("newTaskInput").value = '';
-      }
+      document.getElementById('newTaskInput').value = '';
+    }
   }
 
-  handleRemoveTask (event) {
+  handleRemoveTask(event) {
     if (this.state.listOfTasks && this.state.listOfTasks.length > 0) {
       const resultArr = this.state.listOfTasks.filter(
         arrItem => arrItem.taskNumber !== event.target.value
       );
 
       this.setState({
-        listOfTasks: resultArr
+        listOfTasks: resultArr,
       });
     }
   }
 
-  handleFilterTasks (event) {
+  handleFilterTasks(event) {
     this.setState({
-      filter: event.target.id
+      filter: event.target.id,
     });
   }
 
-  handleModifyTaskStatus (event) {
-    const newArr = this.state.listOfTasks.map (function (arrItem) {
-        if (arrItem.taskNumber === event.target.value) {
-          arrItem.status === "finished"
-            ? arrItem.status = "unfinished"
-            : arrItem.status = "finished";
-        }
-        return arrItem;
+  handleModifyTaskStatus(event) {
+    const newArr = this.state.listOfTasks.map(function(arrItem) {
+      if (arrItem.taskNumber === event.target.value) {
+        arrItem.status === 'finished'
+          ? (arrItem.status = 'unfinished')
+          : (arrItem.status = 'finished');
+      }
+      return arrItem;
     });
     this.setState({
-      listOfTasks: newArr
+      listOfTasks: newArr,
     });
   }
 
-  handleModifyTask (event) {
+  handleModifyTask(event) {
     if (event.keyCode === ESCAPE_KEY) {
       document.getElementById(event.target.id).classList.add('element_hidden');
-      const labelsArr = document.getElementsByTagName("label");
+      const labelsArr = document.getElementsByTagName('label');
 
       for (let i = 0; i < labelsArr.length; i++) {
         if (labelsArr[i].htmlFor === event.target.id) {
-          document.getElementsByTagName("label")[i].classList.remove('element_hidden');
+          document
+            .getElementsByTagName('label')
+            [i].classList.remove('element_hidden');
         }
       }
 
@@ -165,18 +193,17 @@ class TodoAppWrapper extends PureComponent {
     }
 
     if (event.target.value.length > 0) {
-      const newArr = this.state.listOfTasks.map (function (arrItem) {
-          if (arrItem.taskNumber === event.target.id) {
-            arrItem.taskName = event.target.value;
-          }
-          return arrItem;
+      const newArr = this.state.listOfTasks.map(function(arrItem) {
+        if (arrItem.taskNumber === event.target.id) {
+          arrItem.taskName = event.target.value;
+        }
+        return arrItem;
       });
       this.setState({
-        listOfTasks: newArr
+        listOfTasks: newArr,
       });
     }
   }
-
 
   render() {
     return (
@@ -185,9 +212,7 @@ class TodoAppWrapper extends PureComponent {
           listOwner={this.state.listOwner}
           onKeyDown={this.handleSetOwnersName}
         />
-        <AddTaskField
-          onKeyDown={this.handleAddTask}
-        />
+        <AddTaskField onKeyDown={this.handleAddTask} />
         <TasksContainer
           tasksInfo={this.state}
           onClick={this.handleRemoveTask}

@@ -1,7 +1,7 @@
 import React from 'react';
 import './AddTaskField.css';
 
-function AddTaskField (props) {
+function AddTaskField(props) {
   return (
     <React.Fragment>
       <h3 className="to-do-list_header">What needs to be done:</h3>
