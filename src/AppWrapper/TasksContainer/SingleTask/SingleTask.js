@@ -1,8 +1,10 @@
 import React from 'react';
-import './SingleTask.css';
-import { editModeOff } from '../../../globalFunctions.js';
 
-function SingleTask(props) {
+import { editModeOff } from '../../../constants/globalFunctions.js';
+
+import './SingleTask.css';
+
+const SingleTask = (props) => {
   return (
     <div className="container-list-single-item">
       <input

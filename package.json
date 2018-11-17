@@ -2,11 +2,12 @@
   "name": "mytodolist",
   "version": "0.1.0",
   "private": true,
+  "author": "sega_tank",
   "homepage": "https://segatank.github.io/to-do-list-react",
   "dependencies": {
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-scripts": "0.9.5",
+    "react-scripts": "^2.1.1",
     "shortid": "^2.2.8"
   },
   "devDependencies": {
@@ -19,5 +20,11 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

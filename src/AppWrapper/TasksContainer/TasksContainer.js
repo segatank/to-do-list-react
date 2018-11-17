@@ -1,7 +1,9 @@
 import React from 'react';
+
 import SingleTask from './SingleTask/SingleTask.js';
+import { generateUniqueId } from '../../constants/globalFunctions.js';
+
 import './TasksContainer.css';
-import { generateUniqueId } from '../../globalFunctions.js';
 
 function TasksContainer(props) {
   const arrAfterFiltering =

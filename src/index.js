@@ -5,4 +5,7 @@ import AppWrapper from './AppWrapper/TodoAppWrapper.js';
 
 import './index.css';
 
-ReactDOM.render(<AppWrapper />, document.getElementById('root'));
+ReactDOM.render(
+  <AppWrapper />,
+  document.getElementById('root')
+);

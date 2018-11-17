@@ -5,7 +5,8 @@
 
 .to-do-list_input-field {
   margin: auto;
-  width: 596px;
+  width: 566px;
   height: 30px;
   font-size: 22px;
+  padding: 4px 15px;
 }

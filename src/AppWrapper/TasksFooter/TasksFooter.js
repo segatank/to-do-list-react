@@ -1,7 +1,8 @@
 import React from 'react';
+
 import './TasksFooter.css';
 
-function TasksFooter(props) {
+const TasksFooter = (props) => {
   return (
     <div name="container-footer" style={{ textAlign: 'center' }}>
       <span>Tasks to do: </span>

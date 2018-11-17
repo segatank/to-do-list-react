@@ -1,8 +1,10 @@
 import React from 'react';
-import './ListOwner.css';
-import { editModeOff } from '../../globalFunctions.js';
 
-function ListOwner(props) {
+import { editModeOff } from '../../constants/globalFunctions.js';
+
+import './ListOwner.css';
+
+const ListOwner = (props) => {
   return (
     <React.Fragment>
       <h2 className="list-owner" onDoubleClick={event => changeOwner(event)}>

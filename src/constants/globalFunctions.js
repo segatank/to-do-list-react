@@ -19,6 +19,34 @@ export function editModeOff(event) {
   }
 }
 
+export const DEFAULT_LIST_TASKS = [
+  {
+    taskName: 'walk a dog',
+    taskNumber: generateUniqueId(),
+    status: 'unfinished',
+  },
+  {
+    taskName: 'feed the cat',
+    taskNumber: generateUniqueId(),
+    status: 'finished',
+  },
+  {
+    taskName: 'buy some vegies',
+    taskNumber: generateUniqueId(),
+    status: 'unfinished',
+  },
+  {
+    taskName: 'clean the flat',
+    taskNumber: generateUniqueId(),
+    status: 'finished',
+  },
+  {
+    taskName: 'wash the window',
+    taskNumber: generateUniqueId(),
+    status: 'finished',
+  },
+];
+
 //removed for now
 function getRandomGreeting() {
   const greetArray = [

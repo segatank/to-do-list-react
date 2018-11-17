@@ -1,38 +1,19 @@
 import React, { PureComponent } from 'react';
+
 import ListOwner from './ListOwner/ListOwner.js';
 import AddTaskField from './AddTaskField/AddTaskField.js';
 import TasksContainer from './TasksContainer/TasksContainer.js';
 import TasksFooter from './TasksFooter/TasksFooter.js';
-import './TodoAppWrapper.css';
-import { ENTER_KEY, ESCAPE_KEY, generateUniqueId } from '../globalFunctions.js';
 
-const dummyValues = [
-  {
-    taskName: 'walk a dog',
-    taskNumber: generateUniqueId(),
-    status: 'unfinished',
-  },
-  {
-    taskName: 'feed the cat',
-    taskNumber: generateUniqueId(),
-    status: 'finished',
-  },
-  {
-    taskName: 'buy some vegies',
-    taskNumber: generateUniqueId(),
-    status: 'unfinished',
-  },
-  {
-    taskName: 'clean the flat',
-    taskNumber: generateUniqueId(),
-    status: 'finished',
-  },
-  {
-    taskName: 'wash the window',
-    taskNumber: generateUniqueId(),
-    status: 'finished',
-  },
-];
+import {
+  ENTER_KEY,
+  ESCAPE_KEY,
+  DEFAULT_LIST_TASKS,
+  generateUniqueId
+} from '../constants/globalFunctions.js';
+
+import './TodoAppWrapper.css';
+
 
 class TodoAppWrapper extends PureComponent {
   constructor(props) {
@@ -59,7 +40,7 @@ class TodoAppWrapper extends PureComponent {
           listOfTasks: JSON.parse(localStorage.getItem('listOfTasks')),
         })
       : this.setState({
-          listOfTasks: dummyValues,
+          listOfTasks: DEFAULT_LIST_TASKS,
         });
     localStorage.getItem('filter')
       ? this.setState({
@@ -179,9 +160,8 @@ class TodoAppWrapper extends PureComponent {
 
       for (let i = 0; i < labelsArr.length; i++) {
         if (labelsArr[i].htmlFor === event.target.id) {
-          document
-            .getElementsByTagName('label')
-            [i].classList.remove('element_hidden');
+          document.getElementsByTagName('label')[i]
+                  .classList.remove('element_hidden');
         }
       }
 
