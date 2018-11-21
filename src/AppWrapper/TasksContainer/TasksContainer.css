@@ -1,14 +1,14 @@
 .container-list-whole {
-  padding: 25px;
-  background: #cdc9c1;
-  border-radius: 5px;
-  margin: 25px auto;
-  box-shadow: 0 5px 0 0 rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: stretch;
+  padding: 25px;
+  background: #81A3A7;
+  border-radius: 5px;
+  margin: 25px auto;
+  box-shadow: 0 5px 0 0 rgba(0,0,0,0.1);
 }
 
 .container-list-single-item {
@@ -16,7 +16,7 @@
   color: black;
 	padding: 6px;
 	margin: 5px;
-	background: #eafdff;
+	background: #F1F3F2;
 	border-radius: 1.5px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
@@ -32,23 +32,25 @@ ul {
   position: relative;
   font-size: 18px;
   border-bottom: 1px solid #ededed;
+  padding: 0;
+  margin: 0;
 }
 
 li .item-button_hidden {
-    display: none;
-    position: relative;
-    width: 24px;
-    height: 24px;
-    bottom: 18px;
-    left: 12px;
-    margin: 0px 0px 0px 450px;
-    font-size: 18px;
-    color: black;
-    text-align: left;
-    background-color: #fff;
-    border: 1px solid #E5E5E5;
+  display: none;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  bottom: 18px;
+  left: 52px;
+  margin: 0 0 0 450px;
+  font-size: 18px;
+  color: black;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #E5E5E5;
 }
 
 li:hover .item-button_hidden {
-    display: inline;
+  display: inline;
 }

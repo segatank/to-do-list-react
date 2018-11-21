@@ -5,7 +5,7 @@ import './TasksFooter.css';
 const TasksFooter = (props) => {
   return (
     <div name="container-footer" style={{ textAlign: 'center' }}>
-      <span>Tasks to do: </span>
+      <span><i>Tasks to do: </i></span>
       <span>{props.totalTasks} </span>
       <input
         type="radio"

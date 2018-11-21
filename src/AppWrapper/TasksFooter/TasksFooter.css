@@ -5,10 +5,9 @@ input[type=radio] {
 
 input[type=radio] + label {
     display:inline-block;
-    /* margin:-2px; */
     margin: 1px;
     padding: 4px 12px;
-    background-color: #e7e7e7;
+    background-color: #C2D3DA;
     border-color: #ddd;
 }
 
