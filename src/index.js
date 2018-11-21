@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import AppWrapper from './AppWrapper/TodoAppWrapper.js';
 
-import './index.css';
+import './assets/index.css';
 
 ReactDOM.render(
   <AppWrapper />,

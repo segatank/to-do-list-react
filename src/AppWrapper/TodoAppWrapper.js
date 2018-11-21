@@ -4,7 +4,6 @@ import ListOwner from './ListOwner/ListOwner.js';
 import AddTaskField from './AddTaskField/AddTaskField.js';
 import TasksContainer from './TasksContainer/TasksContainer.js';
 import TasksFooter from './TasksFooter/TasksFooter.js';
-
 import {
   ENTER_KEY,
   ESCAPE_KEY,
