@@ -34,8 +34,7 @@ const SingleTask = (props) => {
         className="item-button_hidden"
         value={props.taskNumber}
         onClick={props.onClick}
-      >
-        X
+      >-
       </button>
     </div>
   );

@@ -29,11 +29,14 @@ label {
 
 ul {
   list-style: none;
-  position: relative;
   font-size: 18px;
   border-bottom: 1px solid #ededed;
   padding: 0;
   margin: 0;
+}
+
+input[type=checkbox] {
+  cursor: pointer;
 }
 
 li .item-button_hidden {
@@ -41,14 +44,21 @@ li .item-button_hidden {
   position: relative;
   width: 24px;
   height: 24px;
-  bottom: 18px;
+  bottom: 24px;
   left: 52px;
   margin: 0 0 0 450px;
-  font-size: 18px;
+  font-size: 20px;
   color: black;
-  text-align: left;
+  text-align: center;
   background-color: #fff;
   border: 1px solid #E5E5E5;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+li .item-button_hidden:hover {
+  color: firebrick;
+  border: 1.5px solid #E5E5E5;
 }
 
 li:hover .item-button_hidden {

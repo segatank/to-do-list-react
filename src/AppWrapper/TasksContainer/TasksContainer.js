@@ -5,7 +5,7 @@ import { generateUniqueId } from '../../constants/globalFunctions.js';
 
 import './TasksContainer.css';
 
-function TasksContainer(props) {
+const TasksContainer = (props) => {
   const arrAfterFiltering =
     props.tasksInfo.filter === 'all'
       ? props.tasksInfo.listOfTasks
